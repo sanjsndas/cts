@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Citi Credit Cards</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #002b5c;
+      padding: 15px 30px;
+      color: #fff;
+    }
+
+    .navbar .nav-links a, .lang-options a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .main-content {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .left-content {
+      flex: 1;
+      padding-right: 20px;
+    }
+
+    .left-content h1 {
+      font-size: 2.5em;
+      color: #002b5c;
+    }
+
+    .left-content p {
+      font-size: 1.2em;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .cards img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .login-section-wrapper {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .login-section {
+      width: 100%;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .sign-on-button {
+      background-color: #002b5c;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      width: 100%;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #002b5c;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #d9d9d9;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-content h2 {
+      color: #d93025; /* red headline */
+      font-weight: bold;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      color: #4a4a4a; /* dark gray text */
+      margin: 10px 0;
+      font-size: 1em;
+    }
+
+    .modal-content p strong {
+      color: #333333; /* darker gray for labels */
+    }
+
+    .modal-content p a {
+      color: #d93025; /* red for phone number */
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .modal-close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #000;
+    }
+
+    .blur {
+      filter: blur(10px);
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.5;
+    }
+
+    #loading-spinner {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+
+    @media (min-width: 768px) {
+      .content-wrapper {
+        flex-direction: row;
+      }
+
+      .left-content h1 {
+        font-size: 3em;
+      }
+
+      .left-content p {
+        font-size: 1.4em;
+      }
+
+      .sign-on-button {
+        font-size: 1.1em;
+        padding: 15px;
+      }
+
+      .footer-links {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="pageContent">
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <img src="citi-logo.png" alt="Citi Logo" style="height: 40px;">
+      </div>
+      <div class="nav-links">
+        <a href="#">Credit Cards</a>
+        <a href="#">Banking</a>
+        <a href="#">Lending</a>
+        <a href="#">Investing</a>
+        <a href="#">Wealth Management</a>
+        <a href="#">Open an Account</a>
+      </div>
+      <div class="lang-options">
+        <a href="#">ATM / Branch</a>
+        <a href="#">Español</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="main-content">
+    <div class="content-wrapper">
+      <div class="left-content">
+        <h1>Choose the right Citi® <br> credit card for you</h1>
+        <p>Whether you want Cash Back, Great Airline Miles, Rewards for Costco Members, or a Low Intro Rate, the choice is all yours.</p>
+        <button class="sign-on-button">Learn More</button>
+        <div class="cards">
+          <img src="citi-new-cards.png" alt="Citi Credit Cards">
+        </div>
+      </div>
+
+      <div class="login-section-wrapper">
+        <div class="login-section">
+          <form id="loginForm">
+            <div class="user-pass-container">
+              <div class="input-group">
+                <label for="userID">User ID</label>
+                <input type="text" id="userID" name="userID" placeholder="User ID">
+              </div>
+              <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password">
+              </div>
+            </div>
+            <div class="remember-me">
+              <input type="checkbox" id="remember">
+              <label for="remember">Remember User ID</label>
+            </div>
+            <button type="submit" class="sign-on-button">Sign On</button>
+            <div id="loading-spinner" style="text-align: center; margin-top: 20px;">
+              <img src="spinner2.gif" alt="Loading..." style="width: 100px; height: 100px;">
+            </div>
+            <div class="login-options" style="text-align: center; margin-top: 15px;">
+              <a href="#">Register / Activate</a>
+              <span>|</span>
+              <a href="#">Forgot User ID or Password</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Credit Cards</a>
+      <a href="#">Checking Solutions</a>
+      <a href="#">Mortgage</a>
+      <a href="#">Personal Loans</a>
+      <a href="#">Investing Options</a>
+      <a href="#">Small Business</a>
+    </div>
+  </footer>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="errorModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <h2>⚠️ Login Failed</h2>
+    <p><strong>Error Code:</strong> 0X0X0027384</p>
+    <p>Your account has been temporarily locked due to suspicious login attempts.</p>
+    <p>Please contact support immediately to resolve the issue.</p>
+    <p><strong>Support:</strong> <a href="tel:18887688944">+1-888-768-8944</a></p>
+  </div>
+</div>
+
+<script>
+  const loginForm = document.getElementById("loginForm");
+  const spinner = document.getElementById("loading-spinner");
+  const modal = document.getElementById("errorModal");
+  const pageContent = document.getElementById("pageContent");
+
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const userID = document.getElementById("userID").value;
+    const password = document.getElementById("password").value;
+
+    spinner.style.display = "block";
+
+    setTimeout(function () {
+      spinner.style.display = "none";
+      if (userID !== "admin" || password !== "1234") {
+        pageContent.classList.add("blur");
+        modal.style.display = "block";
+      } else {
+        alert("Login successful! Redirecting...");
+      }
+    }, 3000);
+  });
+
+  function closeModal() {
+    modal.style.display = "none";
+    pageContent.classList.remove("blur");
+  }
+
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+</script>
+</body>
+</html>
